@@ -7,13 +7,28 @@
 *
 */
 
-//--------- Hardware Pins -----------------
-const int trigPin = 3;
-const int echoPin = 2;
+// Approximately 35 activations of the spray before water runs out
+// This is to ensure that we don't burn out the motor
+#define ALLOWABLE_RUNS 30
 
-const int buttonPin = 4;
+// 
+//
+#define DISTANCE_THRESHOLD 40
+
+//--------- Hardware Pins -----------------
+const int trigPin = 2;
+const int echoPin = 4;
+
+
+const int sprayPin = 7;
+
+const int eyePinOne = 10;
+const int eyePinTwo = 12;
 //-----------------------------------------
 
+
+// Testing things
+int runs = 0;
 
 void setup() {
 
@@ -22,18 +37,33 @@ void setup() {
   pinMode(trigPin, OUTPUT);
   pinMode(echoPin, INPUT);
 
-  // Button Setup
-  pinMode(buttonPin,INPUT_PULLUP);
+  // Setup spray
+  pinMode(sprayPin, OUTPUT);
+  stopSpray();
+
+  // Setup eye LEDs
+  pinMode(eyePinOne, OUTPUT);
+  pinMode(eyePinTwo, OUTPUT);
   //----------------------------------------
   
   Serial.begin(9600);
 }
 void loop() {
+
+
+  int distance = getDistance();
   
-  // If button is pressed (safety is off), then check the distance
-  if(buttonPressed())
-  {
-    //if(getDistance() < a specified distance in cm)
-    //trigger the spray
-  } 
+  // If within 40 cm activite the shooter and within the amount
+  // of allowable runs, then spray
+  if(distance < DISTANCE_THRESHOLD && runs < ALLOWABLE_RUNS)
+  {  
+    Serial.println(distance);
+    spray();
+    flashEyes(3);
+    stopSpray();
+    flashEyes(3);
+    
+    runs++;
+  }
+
 }

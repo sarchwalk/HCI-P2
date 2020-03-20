@@ -39,9 +39,3 @@ int readUltrasonicSensor()
 
   return duration;
 }
-
-
-int buttonPressed()
-{
-  return digitalRead(buttonPin) == LOW;
-}
