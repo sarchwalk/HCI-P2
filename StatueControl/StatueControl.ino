@@ -7,7 +7,7 @@
 * This program uses an ultrasonic sensor, a windshield wiper fluid motor, and two LED's to 
 * deter statue thieves. The sensor is used to detect when someone approaches 
 * the statue, and within a certain distance threshold it will trigger the motor to spray the
-* persorn and flash the LEDs to scare them away.
+* thief and flash the LEDs to scare them away.
 *
 */
 

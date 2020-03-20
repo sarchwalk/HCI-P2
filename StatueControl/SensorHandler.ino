@@ -7,7 +7,7 @@ int getDistance()
 {
   int distance;
 
-  distance= readUltrasonicSensor()*0.034/2;
+  distance = readUltrasonicSensor()*0.034/2;
   
   return distance;
 }
