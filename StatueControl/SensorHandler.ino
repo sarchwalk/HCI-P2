@@ -1,9 +1,6 @@
-
-
 /*
  * Calculates the distance from sensor to another object
  * in cm
- * 
  * Returns the distance in cm
  */
 int getDistance()
@@ -16,10 +13,8 @@ int getDistance()
 }
 
 
-
 /*
  * Sends a burst and determines the time required to recieve it back
- * 
  * Returns the amount of time the burst takes to return to the sensor
  */
 int readUltrasonicSensor()
